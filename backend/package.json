@@ -10,11 +10,12 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.3.4",
-    "@strapi/plugin-users-permissions": "4.3.4",
-    "@strapi/strapi": "4.3.4",
-    "better-sqlite3": "7.4.6",
-    "pg": "^8.7.3"
+    "@strapi/plugin-i18n": "4.3.3",
+    "@strapi/plugin-users-permissions": "4.3.3",
+    "@strapi/strapi": "4.3.3",
+    "paytmchecksum": "^1.5.0",
+    "pg": "^8.8.0",
+    "sqlite3": "5.0.2"
   },
   "author": {
     "name": "A Strapi developer"

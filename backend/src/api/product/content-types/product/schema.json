@@ -13,32 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
-    },
-    "price": {
-      "type": "decimal",
-      "min": 0,
-      "required": true
-    },
-    "quantity": {
-      "type": "decimal",
+      "type": "string",
       "required": true,
-      "min": 1
-    },
-    "unit": {
-      "type": "enumeration",
-      "enum": [
-        "kg",
-        "g",
-        "pc"
-      ],
-      "default": "kg",
-      "required": true
+      "unique": true
     },
     "img": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -46,6 +28,23 @@
     "slug": {
       "type": "uid",
       "required": true
+    },
+    "flavours": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::flavour.flavour"
+    },
+    "price": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product",
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category",
+      "inversedBy": "product"
     }
   }
 }

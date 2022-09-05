@@ -10,88 +10,93 @@ export default function Home(props) {
   return (
     <div className="body">
       <Head>
-        <title>Braveheart Bakers - Order</title>
+        <title>Braveheart Bakers</title>
       </Head>
+      
+      
+      {/* <Script src="/js/myscript.js" strategy="lazyOnload"></Script> */}
 
-      <div class="lg:w-full mx-auto w-full">
-        <div class="flex flex-wrap w-full bg-gray-100 py-32 px-10 relative mb-4">
-          <img alt="gallery" class="w-full object-cover h-full object-center block absolute inset-0" src="/show.jpg" />
-          <div class="text-center relative z-10 w-full bg-opacity-50 bg-gray-900">
-            <h2 class="text-4xl text-amber-400 font-medium title-font mb-2">Braveheart Bakers</h2>
-            <p class="leading-relaxed text-white">BraveHeart Bakers is a Home Bakery in Najafgarh, New Delhi delivering Cakes on Advance Order.</p>
-            <Link href="/about"><a class="mt-3 text-amber-400 inline-flex items-center">Learn More</a></Link>
+      {/*  */}
+      <div className="lg:w-full mx-auto w-full">
+        <div className="flex flex-wrap w-full bg-gray-100 py-32 px-10 relative mb-4">
+          <img alt="gallery" className="w-full object-cover h-full object-center block absolute inset-0" src="/show.jpg" />
+          <div className="text-center relative z-10 w-full bg-opacity-50 bg-gray-900">
+            <h2 className="text-4xl text-amber-400 font-medium title-font mb-2">Braveheart Bakers</h2>
+            <p className="leading-relaxed text-white">BraveHeart Bakers is a Home Bakery in Najafgarh, New Delhi delivering Cakes on Advance Order.</p>
+            <Link href="/about"><a className="mt-3 text-amber-400 inline-flex items-center">Learn More</a></Link>
           </div>
         </div>
       </div>
 
       {/* Section: Flavours */}
-      <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="flex flex-wrap w-full mb-20">
-            <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Categories</h1>
-              <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap w-full mb-20">
+            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Menu</h1>
+              <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-            <p class="lg:w-1/2 w-full leading-relaxed text-gray-500"><b>Note:</b> Images are indicative only actual cake design may vary depending on local availability.</p>
+            <p className="lg:w-1/2 w-full leading-relaxed text-gray-500"><b>Note:</b> Images are indicative only actual cake design may vary depending on local availability.</p>
           </div>
 
           {/* loop-content */}
-          <div class="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4">
             {/*  */}
             {props.products.data.map((item) => {
+              let productId = item.id;
               let productName = item.attributes.name;
               let productPrice = item.attributes.price;
+              let productCategory = item.attributes.category.data && item.attributes.category.data.attributes.name;
               let productSlug = item.attributes.slug;
               let productImgSrc = `http://localhost:1337${item.attributes.img.data && item.attributes.img.data.attributes.formats.small.url}`;
               let productImgAlt = item.attributes.img.data && item.attributes.img.data.attributes.alternativeText;
               return (
                 // post-item
-                <div class="xl:w-1/4 md:w-1/2 p-4">
+                <div id={productId} key={productId} className="xl:w-1/4 md:w-1/2 p-4 post-item" onclick="displayModal(this)" >
                   {/* // post-item-details */}
-                  <div class="bg-gray-100 p-6 rounded-lg">
+                  <div className="bg-gray-100 p-6 rounded-lg">
 
                     {/* // post-item-img */}
-                    <img class="h-40 rounded w-full object-cover object-center mb-6" src={productImgSrc} alt="content" />
+                    <img className="h-48 rounded w-full object-cover object-center mb-6" src={productImgSrc} alt="content" />
+
 
                     {/* // post-item-category */}
-                    <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Cake</h3>
+                    {/* <h3 className="tracking-widest text-indigo-500 text-xs font-medium title-font">{productCategory}</h3> */}
+
 
                     {/* // post-item-title */}
-                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{productName}</h2>
+                    <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{productName}</h2>
 
                     {/* // post-item-price */}
-                    <div class="flex flex-col">
-                      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                          <div class="overflow-hidden">
-                            <table class="min-w-full">
-                              <thead class="bg-gray-50 border-b">
+                    <div className="flex flex-col">
+                      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                          <div className="overflow-hidden">
+                            <table className="min-w-full">
+                              <thead className="bg-gray-50 border-b">
                                 <tr>
-                                  <th scope="col" class="text-sm font-medium  text-gray-900 px-6 py-4 text-left">
+                                  <th scope="col" className="text-sm font-medium  text-gray-900 px-6 py-4 text-left">
                                     Quantiy
                                   </th>
-                                  <th scope="col" class="text-sm font-medium  text-gray-900 px-6 py-4 text-left">
+                                  <th scope="col" className="text-sm font-medium  text-gray-900 px-6 py-4 text-left">
                                     Price
                                   </th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr class="bg-gray-100 border-b">
-                                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                                    Half Kg
-                                  </td>
-                                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                                    ₹ {productPrice}
-                                  </td>
-                                </tr>
-                                <tr class="bg-gray-100 border-b">
-                                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                                    1 Kg
-                                  </td>
-                                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                                    ₹ 600
-                                  </td>
-                                </tr>
+                                {productPrice.map((value) => {
+                                  let { id, quantity, unit, price } = value;
+                                  return (
+                                    <tr key={id} className="bg-gray-100 border-b">
+                                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                                        {quantity}{unit}
+                                      </td>
+                                      <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                                        ₹ {price}
+                                      </td>
+                                    </tr>
+                                  )
+                                })}
                               </tbody>
                             </table>
                           </div>
@@ -103,8 +108,6 @@ export default function Home(props) {
                 </div>
               )
             })}
-
-
           </div>
         </div>
       </section>

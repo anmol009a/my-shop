@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shop_products",
+  "info": {
+    "displayName": "price",
+    "icon": "dollar-sign",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "g",
+        "kg",
+        "pc"
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    }
+  }
+}
