@@ -14,12 +14,12 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     */
 
     var paytmParams = {};
-
+console.log(process.env);
     paytmParams.body = {
       "requestType": "Payment",
       "mid": process.env.MID,
-      "websiteName": "YOUR_WEBSITE_NAME",
-      "orderId": "ORDERID_98765",
+      "websiteName": process.env.WEBSITE,
+      "orderId": "23145",
       "callbackUrl": "http://localhost:1337/api/orders/posttransaction",
       "txnAmount": {
         "value": "1.00",
@@ -34,6 +34,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     * Generate checksum by parameters we have in body
     * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
     */
+
     let checksum = await PaytmChecksum.generateSignature(JSON.stringify(paytmParams.body), process.env.MKEY);
 
     paytmParams.head = {
@@ -51,7 +52,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
           // hostname: 'securegw.paytm.in',
 
           port: 443,
-          path: `/theia/api/v1/initiateTransaction?mid=${process.env.MID}&orderId=ORDERID_98765`,
+          path: `/theia/api/v1/initiateTransaction?mid=${process.env.MID}&orderId=23145`,
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,9 +78,10 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     }
 
     let myResponse = await getToken()
-    ctx.body = myResponse;
-    // ctx.send(JSON.parse(myResponse))
+    // ctx.body = myResponse;
+    ctx.send(JSON.parse(myResponse))
 
   },
 
-}));
+  })
+);
